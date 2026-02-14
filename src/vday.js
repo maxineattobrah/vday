@@ -172,14 +172,14 @@ export default function Vday(){
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-valentines-pink to-valentines-pink-dark font-sans overflow-hidden relative">
             {/* Background music */}
             <audio ref={homeScreenBackgroundMusic} loop>
-                <source src="/influence.mp3" type="audio/mpeg"/>
+                <source src={process.env.PUBLIC_URL + "/influence.mp3" }type="audio/mpeg"/>
             </audio>
             <audio ref={celebreationBackgroundMusic} loop>
-                <source src="/cheers.mp3" type="audio/mpeg"/>
+                <source src={process.env.PUBLIC_URL + "/cheers.mp3"} type="audio/mpeg"/>
             </audio>
             <button
                 onClick={toggleMusic}
-                className="fixed top-5 right-8 z-50 hover:rounded-full p-3 shadow-lg transition-all hover:scale-110"
+                className="fixed top-5 right-8 z-50 hover:rounded-full p-3 shadow-lg hover:scale-110"
                 title={musicPlaying? "Pause Music": "Play Music"}
                 >
                 {musicPlaying?(
