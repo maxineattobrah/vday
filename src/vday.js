@@ -1,4 +1,4 @@
-import React,{ useEffect, useRef, useState} from "react";
+import React,{ useEffect, useMemo, useRef, useState} from "react";
 import AnimatedBear from './animatedBear';
 
 export default function Vday(){
@@ -9,6 +9,16 @@ export default function Vday(){
 
     const homeScreenBackgroundMusic = useRef(null);
     const celebreationBackgroundMusic = useRef(null);
+
+
+    const heartPositions = useMemo(()=>{
+        return [...Array(15)].map(()=>({
+            left: Math.random()*100,
+            duration: 5+Math.random()*3,
+            fontSize: 15+Math.random()*15,
+            opacity: 0.6+Math.random()*0.4
+        }))
+    },[]);
 
     useEffect(()=>{
         if(homeScreenBackgroundMusic.current){
@@ -57,6 +67,7 @@ export default function Vday(){
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-valentines-pink to-valentines-pink-dark overflow-hidden relative">
             {/* floating heart background */}
             <div className="celebration-hearts absolute top-0 left-0 w-full h-full pointer-events-none">
+
                 {[...Array(20)].map((_,i) =>(
                     <span key={i}
                         className="absolute animate-explode"
@@ -190,21 +201,22 @@ export default function Vday(){
             </button>
             {/* floating heart background */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-                {[...Array(15)].map((_,i) =>(
+                
+                {heartPositions.map((heart,i)=>(
                     <span key={i}
                         className="absolute animate-float"
                         style={{
-                            left: `${Math.random()*100}%`,
-                            bottom: '-50px',
+                            left: `${heart.left}%`,
+                            bottom: `${-50 + (i*-30)}px`,
                             animationDelay: "0s",
-                            // animationDelay: `${Math.random()*5}s`,
-                            animationDuration: `${5 + Math.random()*3}s`,
-                            fontSize: `${15 + Math.random()*15}px`,
-                            opacity: 0.6 + Math.random()*0.4,
+                            animationDuration: `${heart.duration}s`,
+                            fontSize: `${heart.fontSize}px`,
+                            opacity: heart.opacity,
                         }}
                     >
                         ❤️
                     </span>
+
                 ))}
 
             </div>
