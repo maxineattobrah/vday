@@ -21,6 +21,7 @@ export default function Vday(){
     },[]);
 
     useEffect(()=>{
+
         if(homeScreenBackgroundMusic.current){
             homeScreenBackgroundMusic.current.volume = 0.3;
         }
